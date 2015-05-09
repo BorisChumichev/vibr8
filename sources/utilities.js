@@ -1,7 +1,3 @@
-/**
- * scripts/utilities.js
- */
-
 'use strict';
 
 /**

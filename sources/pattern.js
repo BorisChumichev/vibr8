@@ -59,7 +59,7 @@ Pattern.prototype._checkSumOfPattern = function (pattern) {
 /**
  * Validate pattern elements 
  * @private
- * @param  {[Number]} pattern 
+ * @param  {[Number]} pattern
  * @return {Boolean}
  */
 Pattern.prototype._percentCheck = function (pattern) {
