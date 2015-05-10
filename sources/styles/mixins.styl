@@ -1,0 +1,18 @@
+/***************************************************************
+mixins.styl
+***************************************************************/
+
+transition-all-ease(duration)
+  -webkit-transition all duration ease
+  -moz-transition all duration ease
+  -ms-transition all duration ease
+  -o-transition all duration ease
+  transition all duration ease
+  
+nth-child-transition-delay(childs, delayIncrement)
+  for i, j in (1..childs)
+      &:nth-child({i})
+        transition-delay delayIncrement*j
+        -webkit-transition-delay delayIncrement*j 
+        -ms-transition-delay delayIncrement*j 
+        -moz-transition-delay delayIncrement*j 

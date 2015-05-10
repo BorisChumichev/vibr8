@@ -1,0 +1,10 @@
+{
+  "name": "vibr8",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-browserify": "^0.5.1",
+    "gulp-stylus": "^2.0.1",
+    "gulp-uglify": "^1.2.0"
+  }
+}

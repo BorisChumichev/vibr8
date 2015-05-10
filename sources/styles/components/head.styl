@@ -1,0 +1,41 @@
+/***************************************************************
+components/head.styl
+***************************************************************/
+
+head-element(w, h, img, t)
+  left 50%
+  background-repeat no-repeat
+  position absolute
+  margin-left w*-0.5
+  width w
+  height h
+  background-image url(img)
+  background-size w h
+  top t
+  transition-all-ease(.85s)
+  
+
+.head
+  height 500px
+  transition-all-ease(.75s)
+  & > *
+    nth-child-transition-delay(3, .1s)
+  &.hidden
+    height 200px
+    & > *
+      top -400px
+  &__phone
+    head-element(182px, 315px, '../img/phone.png', 20px)
+  &__title
+    head-element(624px, 91px, '../img/logo.png', 100px)
+  &__subtitle
+    head-element(493px, 58px, '../img/description.png', 200px)
+    
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)
+  .head__phone
+    head-element(182px, 315px, '../img/phone2x.png', 20px)
+  .head__title
+    head-element(624px, 91px, '../img/logo2x.png', 100px)
+  .head__subtitle
+    head-element(493px, 58px, '../img/description2x.png', 200px)
+    
