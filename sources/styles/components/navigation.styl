@@ -2,4 +2,25 @@
 components/navigation.styl
 ***************************************************************/
   
-  
+.navigation
+  text-align center
+  margin 20px 0 80px 0
+  font-size 22px
+  &__github
+    display inline-block
+    position relative
+    text-align left
+    margin-right 60px
+    &:before
+      content ' '
+      position absolute
+      width 114px
+      height 95px
+      background-size 114px 95px
+      background-image url('../img/octocat.png')
+      left -114px
+      top -26px
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)
+  .navigation__github:before
+    background-image url('../img/octocat2x.png')

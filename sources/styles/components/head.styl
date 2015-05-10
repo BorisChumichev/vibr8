@@ -12,11 +12,10 @@ head-element(w, h, img, t)
   background-image url(img)
   background-size w h
   top t
-  transition-all-ease(.85s)
-  
+  transition-all-ease(.85s)  
 
 .head
-  height 500px
+  height 400px
   transition-all-ease(.75s)
   & > *
     nth-child-transition-delay(3, .1s)
@@ -26,6 +25,11 @@ head-element(w, h, img, t)
       top -400px
   &__phone
     head-element(182px, 315px, '../img/phone.png', 20px)
+    -webkit-animation-name: spaceboots;
+    -webkit-animation-duration: 1s;
+    -webkit-transform-origin:50% 50%;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
   &__title
     head-element(624px, 91px, '../img/logo.png', 100px)
   &__subtitle
@@ -38,4 +42,5 @@ head-element(w, h, img, t)
     head-element(624px, 91px, '../img/logo2x.png', 100px)
   .head__subtitle
     head-element(493px, 58px, '../img/description2x.png', 200px)
+
     

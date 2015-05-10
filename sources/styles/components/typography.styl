@@ -2,5 +2,25 @@
 components/typography.styl
 ***************************************************************/
 
+body
+  -webkit-font-smoothing: antialiased;
+
 h1, h2, h3, h4, h5, h6
-  font-weight normal
+  font-weight 300
+  
+h2
+  font-size 36px
+  margin-top 60px
+  display block
+  
+a
+  color color-main
+  display inline-block
+  &:hover
+    opacity .5
+
+.synopsis
+  background rgba(255,255,255,.1)
+  padding 24px
+  font 18px/36px font-primary
+  font-weight 300
