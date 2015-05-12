@@ -122,8 +122,10 @@ Vibr8.vibrationSupported = function () {
 /**
  * Starts vibration
  */
-Vibr8.prototype.start = function () {
+Vibr8.prototype.start = function (pattern, period) {
   if (!this.isVibrating) {
+    if (pattern) this.setPattern(pattern)
+    if (period) this.setPeriod(period)
     this.isVibrating = true
     this._initNewSubPeriod()
   }
@@ -145,9 +147,10 @@ Vibr8.prototype.stop = function () {
  * Plays pattern once
  * @param  {[Number]} pattern optional pattern
  */
-Vibr8.prototype.repeat = function (times, pattern) {
+Vibr8.prototype.repeat = function (times, pattern, period) {
   if (!this.isVibrating) {
     if (pattern) this.setPattern(pattern)
+    if (period) this.setPeriod(period)
     this._counter.val = times
     this._counter.status = true
     this.start()
