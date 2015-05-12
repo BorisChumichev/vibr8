@@ -70,10 +70,6 @@ Pattern.prototype._percentCheck = function (pattern) {
 }
 
 },{"./utilities.js":2}],2:[function(require,module,exports){
-/**
- * scripts/utilities.js
- */
-
 'use strict';
 
 /**
@@ -104,7 +100,7 @@ var Pattern = require('./pattern.js')
  */
 var Vibr8 = function (pattern, period) {
 
-  if ( Vibr8.prototype._singletonInstance )
+  if (Vibr8.prototype._singletonInstance)
     return Vibr8.prototype._singletonInstance
   Vibr8.prototype._singletonInstance = this
 
@@ -183,9 +179,10 @@ Vibr8.prototype.setPattern = function (pattern) {
  * @param  {function} func          handler
  */
 Vibr8.prototype.bind = function (eventName, func) {
-  return this.bindings[eventName]
+  this.bindings[eventName]
     ? this.bindings[eventName].push(func)
     : this.bindings[eventName] = [func]
+  return this
 }
 
 module.exports = Vibr8
@@ -237,7 +234,7 @@ Vibr8.prototype._initNewSubPeriod = function () {
  * @return {[type]}          [description]
  */
 Vibr8.prototype._vibrateOrBeIdle = function (duration) {
-  if (this.counterEnabledAndHaveReachedZero()) {
+  if (this._counterEnabledAndHaveReachedZero()) {
     this.stop()
   } else {
     if (this.iterNum%2) {
@@ -260,6 +257,7 @@ Vibr8.prototype._restartIterations = function () {
     this._counter.val--
   }
   this.iterNum = 0
+  this._emit('newperiod', {target: this})
   return 0
 }
 
@@ -276,10 +274,15 @@ Vibr8.prototype._emit = function (eventName, eventObject) {
     })
 }
 
-Vibr8.prototype.counterEnabledAndHaveReachedZero = function () {
+/**
+ * Checks wther counter is set and reached zero
+ * @private
+ * @return {Boolean}
+ */
+Vibr8.prototype._counterEnabledAndHaveReachedZero = function () {
   return this._counter.status 
-    && (this._counter.val === 0) 
-    && (this.iterNum === 0)
+    && (this._counter.val <= 0) 
+    && (this.iterNum <= 0)
 }
 
 },{"./pattern.js":1}]},{},[3])(3)

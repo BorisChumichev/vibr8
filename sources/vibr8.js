@@ -92,9 +92,10 @@ Vibr8.prototype.setPattern = function (pattern) {
  * @param  {function} func          handler
  */
 Vibr8.prototype.bind = function (eventName, func) {
-  return this.bindings[eventName]
+  this.bindings[eventName]
     ? this.bindings[eventName].push(func)
     : this.bindings[eventName] = [func]
+  return this
 }
 
 module.exports = Vibr8
@@ -169,6 +170,7 @@ Vibr8.prototype._restartIterations = function () {
     this._counter.val--
   }
   this.iterNum = 0
+  this._emit('newperiod', {target: this})
   return 0
 }
 
