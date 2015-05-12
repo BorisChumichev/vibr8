@@ -5,7 +5,9 @@
  */
 
 var Pattern = require('./pattern.js')
-  , navigatior = window.navigator
+  , navigator = window.navigator
+
+navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate
 
 /**
  * @constructor
@@ -105,8 +107,8 @@ module.exports = Vibr8
  * @private
  */
 Vibr8.prototype._vibrate = function (duration) {
-  if (navigatior.vibrate)
-    navigatior.vibrate(duration)
+  if (navigator.vibrate)
+    navigator.vibrate(duration)
   else
     console.error('Vibration API is not supported')
 }
