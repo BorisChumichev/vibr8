@@ -10,7 +10,8 @@ components/navigation.styl
     display inline-block
     position relative
     text-align left
-    margin-right 60px
+    margin-left 60px
+    text-decoration none
     &:before
       content ' '
       position absolute
@@ -20,7 +21,18 @@ components/navigation.styl
       background-image url('../img/octocat.png')
       left -114px
       top -26px
+  &__download
+    display inline-block
+    text-align left
+    margin-left 70px
+    padding 24px
+    background rgba(255,255,255,.1)
+    & span, a
+      display block
+    & a
+      font-size 16px
 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)
   .navigation__github:before
     background-image url('../img/octocat2x.png')
+    
