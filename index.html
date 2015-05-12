@@ -46,18 +46,18 @@
             <li><a href="#bind">vibr8.bind(eventName, handler)</a></li>
             <li><a href="#events">Event list</a></li>
         </ul>
-        <p>Vibr8 is a singleton class for dealing with Vibration API. You can instatiate it using the <code>Vibr8</code> constructor. It's a good idea to check for the presence of API support before using it:</p>
+        <p>Vibr8 is a singleton class for dealing with Vibration API. You can instantiate it using the <code>Vibr8</code> constructor. It's a good idea to check for the presence of API support before using it:</p>
         <h3 id="support">Vibr8.vibrationSupported()</h3>
         <ul>
             <li>Return Boolean - <i><code>true</code> if Vibration API is supported.</i></li>
         </ul>
-        <p>Static method, checks whther Vibration API is supported.</p>
+        <p>Static method, checks whether Vibration API is supported.</p>
         <h3 id="constructor">new Vibr8([pattern][, period])</h3>
         <ul>
             <li><strong>pattern</strong> [Number], Optional, Default: [50, 50] - <i>set of values from 0 to 100 which represents time intervals in percents of active and idle states of vibration;</i></li>
             <li><strong>period</strong> Number, Optional, Default: 1700 - <i>vibration cycle duration in ms.</i></li>
         </ul>
-        <p>Creates new Vibr8 instance with specified or default pattern and vibration cycle duration. First argument must be an array of values from 0 to 100 with sum of 100. The even indices represent vibration duration, the odd indices represent a delay before the next vibration in percents. Resulting vibration pattern will be scaled to vibration cycle duration which you can specify with <strong>period</strong> parameter. For instance the following code makes device to vibrate for 1080ms with 120ms delays:</p>
+        <p>Creates new Vibr8 instance with specified or default pattern and vibration cycle duration. First argument must be an array of values from 0 to 100 with sum of 100. The even indexes represent vibration duration, the odd indexes represent a delay before the next vibration in percents. Resulting vibration pattern will be scaled to vibration cycle duration which you can specify with <strong>period</strong> parameter. For instance the following code makes device to vibrate for 1080ms with 120ms delays:</p>
         <pre><code>var vibr8 = new Vibr8([90, 10], 1200)
 vibr8.start()</code></pre>
         <p>Thus by changing pattern you are able to change form of vibrations, by changing period you affect vibration speed.</p>
@@ -67,7 +67,7 @@ vibr8.start()</code></pre>
             <li><strong>pattern</strong> [Number], Optional - <i>set of values from 0 to 100 which represents time intervals in percents of active and idle states of vibration.</i></li>
             <li><strong>period</strong> Number, Optional - <i>vibration cycle duration in ms.</i></li>
         </ul>
-        <p>Starts vibrations. Repeats vibration pattern continiously untill <code>vibr8.stop()</code> call. Optionally you can redefine vibration pattern and vibration cycle duration.</p>
+        <p>Starts vibrations. Repeats vibration pattern continuously until <code>vibr8.stop()</code> call. Optionally you can redefine vibration pattern and vibration cycle duration.</p>
 
         <h3 id="repeat">vibr8.repeat(times[, pattern][, period])</h3>
         <ul>
@@ -84,7 +84,7 @@ vibr8.start()</code></pre>
         <ul>
             <li><strong>period</strong> Number - <i>vibration cycle duration in ms.</i></li>
         </ul>
-        <p>Sets a vibration cycle duration, overrides old value. Can be called while vibration is in active state, changes will be applied immediately. Use this metod in order to change vibration speed.</p>
+        <p>Sets a vibration cycle duration, overrides old value. Can be called while vibration is in active state, changes will be applied immediately. Use this method in order to change vibration speed.</p>
         
         <h3 id="get-period">vibr8.getPeriod()</h3>
         <ul>
@@ -115,7 +115,7 @@ vibr8.bind('started', function () {
 
         <h3 id="events">Event list:</h3>
         <ul>
-            <li><strong>'started'</strong> - <i> fires each time device strarts vibrating;</i></li>
+            <li><strong>'started'</strong> - <i> fires each time device starts vibrating;</i></li>
             <li><strong>'ended'</strong> - <i> fires each time device stops vibrating;</i></li>
             <li><strong>'newperiod'</strong> - <i> fires each time new vibration cycle begins.</i></li>
         </ul>
