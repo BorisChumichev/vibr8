@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>vibr8 basic example</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <style type="text/css">
+    html {
+      background: #22a7b0;
+      color: #eef1e1; 
+      font-family: sans-serif;
+      text-align: center;
+    }
+    h1.active {
+      background-color: rgb(241, 118, 74);
+    }
+  </style>
+</head>
+<body>
+
+<h1 id="title">Vibr8 speed up on event example</h1>
+
+<script src="../build/vibr8.js" type="text/javascript"></script>
+<script>
+  var title = document.getElementById('title')
+    , vibr8 = new Vibr8([50, 50], 1200)
+
+  vibr8.bind('started', function () {
+    title.className = "active"
+  }).bind('ended', function () {
+    title.className = ""
+  }).bind('newperiod', function () {
+    vibr8.setPeriod(vibr8.getPeriod() - 100)
+  }).start()
+</script>
+</body>
+</html>
+
+
