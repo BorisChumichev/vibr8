@@ -114,6 +114,11 @@ var Vibr8 = function (pattern, period) {
   this._counter = {status: false, val: 0}
 }
 
+
+Vibr8.vibrationSupported = function () {
+  return !!navigator.vibrate
+}
+
 /**
  * Starts vibration
  */
