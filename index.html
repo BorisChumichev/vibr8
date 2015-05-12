@@ -29,13 +29,76 @@
             Vibr8 is a lightweight (1.2K gzipped) <a href="http://www.w3.org/TR/vibration/" target="_blank">Vibration API</a> wrapper. It reduces inconsistencies of API’s implementations across browsers and gives you some extra powers.
         </div>
         <h2>Install</h2>
-        <p>The simplest way to install Vibr8 is using Bower package manager: <code>bower install vibr8</code>. You also can manually download it's <a href="">source code with examples</a> or <a href="">minified version</a>. Vibr8 packaged as UMD module to be loaded anywhere,  just plop it into a script tag in some html:
+        <p>The easiest way to install Vibr8 is using Bower package manager: <code>bower install vibr8</code>. You also can manually download it's <a href="">source code with examples</a> or <a href="">minified version</a>. Vibr8 packaged as UMD module to be loaded anywhere,  just plop it into a script tag in some html:
         <pre><code>&lt;script src="vibr8.min.js"&gt;&lt;/script&gt;</code></pre>
-        <p>A window global named <code>Vibr8</code> will be created, or if a module system is detected in the host environment, it will be used. You can also <code>reqire</code> Vibr8 using Browserify.</p>
-        <h2>Documentation</h2>
-        <p>Vibr8 is a singleton class, you can instatiate it using the constructor:
-        <pre><code>var vibr8 = Vibr8()</code></pre>
-        </p>
+        <p>A window global named <code>Vibr8</code> will be created, or if a module system is detected in the host environment, it will be used. You can also <code>require</code> Vibr8 using Browserify.</p>
+        <h2>Docs</h2>
+        <p>Vibr8 is a singleton class for dealing with Vibration API. You can instatiate it using the <code>Vibr8</code> constructor.</p>
+        <h3>new Vibr8([pattern][, period])</h3>
+        <ul>
+            <li><strong>pattern</strong> [Number], Optional, Default: [50, 50] - <i>set of values from 0 to 100 which represents time intervals in percents of active and idle states of vibration;</i></li>
+            <li><strong>period</strong> Number, Optional, Default: 1700 - <i>vibration cycle duration in ms.</i></li>
+        </ul>
+        <p>Creates new Vibr8 instance with specified or default pattern and vibration cycle duration. First argument must be an array of values from 0 to 100 with sum of 100. The even indices represent vibration duration, the odd indices represent a delay before the next vibration in percents. Resulting vibration pattern will be scaled to vibration cycle duration which you can specify with <strong>period</strong> parameter. For instance the following code makes device to vibrate for 1080ms with 120ms delays:</p>
+        <pre><code>var vibr8 = new Vibr8([90, 10], 1200)
+vibr8.start()</code></pre>
+        <p>Thus by changing pattern you are able to change form of vibrations, by changing period you affect vibration speed.</p>
+
+        <h3>vibr8.start()</h3>
+        <p>Starts vibrations. Repeats vibration pattern continiously untill <code>vibr8.stop()</code> call.</p>
+
+        <h3>vibr8.repeat(times[, pattern])</h3>
+        <ul>
+            <li><strong>times</strong> Number - <i>vibration cycle repetition number;</i></li>
+            <li><strong>pattern</strong> [Number], Optional - <i>set of values from 0 to 100 which represents time intervals in percents of active and idle states of vibration.</i></li>
+        </ul>
+        <p>Starts vibrations. Repeats vibration pattern for a specified number of times or until <code>vibr8.stop()</code> call. Optionally you can redefine vibration pattern using second parameter.</p>
+
+        <h3>vibr8.stop()</h3>
+        <p>Stops vibrations immediately whether they were initialized by <code>vibr8.start()</code> or <code>vibr8.repeat()</code>.</p>
+
+        <h3>vibr8.setPeriod(period)</h3>
+        <ul>
+            <li><strong>period</strong> Number - <i>vibration cycle duration in ms.</i></li>
+        </ul>
+        <p>Sets a vibration cycle duration, overrides old value. Can be called while vibration is in active state, changes will be applied immediately. Use this metod in order to change vibration speed.</p>
+        
+        <h3>vibr8.getPeriod()</h3>
+        <ul>
+            <li>Return: Number</i></li>
+        </ul>
+        <p>Returns current vibration cycle duration.</p>
+
+        <h3>vibr8.setPattern(pattern)</h3>
+        <ul>
+            <li><strong>pattern</strong> [Number] - <i>set of values from 0 to 100 which represents time intervals in percents of active and idle states of vibration;</i></li>
+        </ul>
+        <p>Sets a vibration pattern, overrides old pattern. Can be called while vibration is in active state, changes will be applied immediately.</p>
+
+        <h3>vibr8.bind(eventName, handler)</h3>
+        <ul>
+            <li><strong>eventName</strong> String - <i> event name;</i></li>   
+            <li><strong>handler</strong> Function - <i> event handler function.</i></li>   
+        </ul>
+        <p>Adds a listener for the specified <strong>eventName</strong>.</p>
+
+        <p>Event list:</p>
+        <ul>
+            <li><strong>'started'</strong> - <i> fires each time device strarts vibrating;</i></li>
+            <li><strong>'ended'</strong> - <i> fires each time device stops vibrating;</i></li>
+            <li><strong>'newperiod'</strong> - <i> fires each time new vibration cycle begins.</i></li>
+        </ul>
+        <p>Returns emitter, so calls can be chained like so:</p>
+        <pre><code>var vibr8 = new Vibr8([50, 50], 1200)
+vibr8.bind('started', function () {
+  console.log('Device is vibrating')
+}).bind('ended', function () {
+  console.log('Device is idle')
+}).bind('newperiod', function () {
+  vibr8.setPeriod(vibr8.getPeriod() - 100)
+  console.log('Speed up!')
+}).start()</code></pre>
+        
     </div>
 
     <script src="js/app.js" type="text/javascript"></script>
