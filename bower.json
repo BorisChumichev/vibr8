@@ -1,0 +1,26 @@
+{
+  "name": "vibr8",
+  "version": "1.0.0",
+  "homepage": "https://github.com/BorisChumichev/vibr8",
+  "authors": [
+    "Boris Chumichev <boris362@yandex.ru>"
+  ],
+  "description": "HTML5 Vibration API enhancement",
+  "main": "build/vibr8.min.js",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "vibration"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
